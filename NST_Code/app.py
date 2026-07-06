@@ -9,6 +9,8 @@ from wtforms.validators import InputRequired
 from PIL import Image
 from torchvision import transforms
 import io
+from pathlib import Path
+
 
 # Import your existing AdaIN code
 from utils.models import VGGEncoder, Decoder
@@ -33,9 +35,17 @@ class UploadForm(FlaskForm):
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+BASE_DIR = Path(__file__).resolve().parent
+
+VGG_PATH = BASE_DIR / "vgg_normalised.pth"
+MODEL_PATH = BASE_DIR / "experiment" / "final_exp" / "decoder_final.pth"
+
 encoder = VGGEncoder('vgg_normalised.pth').to(device)
 decoder = Decoder().to(device)
-decoder.load_state_dict(torch.load('C:/Users/kushw/OneDrive/Desktop/AI_Projects/ai-nst-project-main/NST_Code/experiment/final_exp/decoder_final.pth', map_location=device))
+decoder.load_state_dict(
+    torch.load(MODEL_PATH, map_location=device)
+)
+# decoder.load_state_dict(torch.load('C:/Users/kushw/OneDrive/Desktop/AI_Projects/ai-nst-project-main/NST_Code/experiment/final_exp/decoder_final.pth', map_location=device))
 
 encoder.eval()
 decoder.eval()
