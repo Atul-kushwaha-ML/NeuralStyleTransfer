@@ -11,13 +11,21 @@ from torchvision.utils import save_image
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
+    BASE_DIR = Path(__file__).resolve().parent
 
-    parser.add_argument('--content_dir', type=str, default='C:/Users/kushw/OneDrive/Desktop/AI_Projects/ai-nst-project-main/NST_Code/content_data',
+    
+    parser.add_argument('--content_dir', type=str, default=str(BASE_DIR / "content_data"),
                         help='Location of content dataset')
-    parser.add_argument('--style_dir', type=str, default='C:/Users/kushw/OneDrive/Desktop/AI_Projects/ai-nst-project-main/NST_Code/style_data',
+    parser.add_argument('--style_dir', type=str, default=str(BASE_DIR / "style_data"),
                         help='Location of style dataset')
-    parser.add_argument('--vgg', type=str, default='C:/Users/kushw/OneDrive/Desktop/AI_Projects/ai-nst-project-main/NST_Code/vgg_normalised.pth',
+    parser.add_argument('--vgg', type=str, default=str(BASE_DIR / "vgg_normalised.pth"),
                         help='Location of pre-trained VGG')
+    # parser.add_argument('--content_dir', type=str, default='C:/Users/kushw/OneDrive/Desktop/AI_Projects/ai-nst-project-main/NST_Code/content_data',
+    #                     help='Location of content dataset')
+    # parser.add_argument('--style_dir', type=str, default='C:/Users/kushw/OneDrive/Desktop/AI_Projects/ai-nst-project-main/NST_Code/style_data',
+    #                     help='Location of style dataset')
+    # parser.add_argument('--vgg', type=str, default='C:/Users/kushw/OneDrive/Desktop/AI_Projects/ai-nst-project-main/NST_Code/vgg_normalised.pth',
+    #                     help='Location of pre-trained VGG')
     parser.add_argument('--experiment', type=str, default='experiment1',
                         help='Name of experiment')
     

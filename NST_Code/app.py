@@ -40,7 +40,7 @@ BASE_DIR = Path(__file__).resolve().parent
 VGG_PATH = BASE_DIR / "vgg_normalised.pth"
 MODEL_PATH = BASE_DIR / "experiment" / "final_exp" / "decoder_final.pth"
 
-encoder = VGGEncoder('vgg_normalised.pth').to(device)
+encoder = VGGEncoder(str(VGG_PATH)).to(device)
 decoder = Decoder().to(device)
 decoder.load_state_dict(
     torch.load(MODEL_PATH, map_location=device)
